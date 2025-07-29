@@ -48,6 +48,11 @@ const addNews = async (req, res) => {
 
 const fetchNews = async (req, res) => {
   const data = await news.findAll();
+  if(data.length ===0 ){
+    return res.status(200).json({
+      message:"No news to fetched"
+    })
+  }
   return res.status(200).json({
     message: "News fetched successfully",
     data,

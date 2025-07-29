@@ -1,4 +1,8 @@
-const { fetchMessage, addMessage, deleteMessage } = require("../controller/messageController");
+const {
+  fetchMessage,
+  addMessage,
+  deleteMessage,
+} = require("../controller/messageController");
 const {
   isAuthenticated,
   restrictedTo,
@@ -13,6 +17,12 @@ router
   .post(catchError(addMessage))
   .get(isAuthenticated, restrictedTo(Roles.admin), catchError(fetchMessage));
 
-  router.route('/message/:id').delete(isAuthenticated,restrictedTo(Roles.admin),catchError(deleteMessage))
+router
+  .route("/message/:id")
+  .delete(
+    isAuthenticated,
+    restrictedTo(Roles.admin),
+    catchError(deleteMessage)
+  );
 
-  module.exports = router
+module.exports = router;
