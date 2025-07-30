@@ -13,6 +13,6 @@ router
   .post(catchError(addAdmission))
   .get(isAuthenticated, restrictedTo(Roles.admin), catchError(fetchAdmission));
 
-  router.route('/message/:id').delete(isAuthenticated,restrictedTo(Roles.admin),catchError(deleteAdmission))
+  router.route('/admission/:id').delete(isAuthenticated,restrictedTo(Roles.admin),catchError(deleteAdmission))
 
   module.exports = router

@@ -77,9 +77,7 @@ const fetchAdmission = async (req, res) => {
 const deleteAdmission = async (req, res) => {
   const { id } = req.params;
   await admissions.destroy({
-    where: {
-      id,
-    },
+    where: { id }
   });
   return res.status(200).json({
     message: "admission data deleted successfully",
