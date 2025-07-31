@@ -9,7 +9,7 @@ const {
   Roles,
 } = require("../middleware/isAuthenticated");
 const catchError = require("../util/catchError");
-const loginRateLimiter = require("../util/rateLimiter");
+// const loginRateLimiter = require("../util/rateLimiter");
 
 const router = require("express").Router();
 
@@ -22,7 +22,7 @@ router
     catchError(verifyToken)
   );
 
-router.route("/login").post(loginRateLimiter, catchError(isLogin));
+router.route("/login").post( catchError(isLogin));
 
 router.route("/logout").post(catchError(logout));
 

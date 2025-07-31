@@ -10,7 +10,7 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://schooladmin-production.up.railway.app",
   "https://schoolbhawagatiwebsite-production.up.railway.app",
-  "https://www.hamrobhagawati.com"
+  "https://www.hamrobhagawati.com",
 ];
 
 app.use(
@@ -32,15 +32,15 @@ app.use(express.json());
 adminSeeder();
 
 const authRoutes = require("./src/routes/authRoute");
-const userRoutes = require('./src/routes/userRoute')
-const newsRoutes = require('./src/routes/newsRoute')
-const admissionRoutes = require('./src/routes/addmissionRoute')
-const messageRoutes = require('./src/routes/messageRoute')
+const userRoutes = require("./src/routes/userRoute");
+const newsRoutes = require("./src/routes/newsRoute");
+const admissionRoutes = require("./src/routes/addmissionRoute");
+const messageRoutes = require("./src/routes/messageRoute");
 
 app.use("/", authRoutes);
-app.use('/', userRoutes)
-app.use('/', newsRoutes);
-app.use('/',admissionRoutes)
-app.use('/',messageRoutes)
+app.use("/", userRoutes);
+app.use("/", newsRoutes);
+app.use("/", admissionRoutes);
+app.use("/", messageRoutes);
 
 module.exports = app;
