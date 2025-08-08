@@ -59,6 +59,9 @@ const fetchNews = async (req, res) => {
 // let domain = url.host.toLowerCase().replace(/^www\./, '').trim();
 
   const domain = req.hostname.toLowerCase().replace(/^www\./, '').trim(); 
+console.log("DOMAIN:", domain);
+console.log("ALLOWED:", allowedDomains);
+
 
   if (!allowedDomains.includes(domain)) {
     return res.status(403).json({ message: 'Unauthorized domain' });
