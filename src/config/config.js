@@ -43,10 +43,15 @@ const r2Config = {
     publicUrl: process.env.R2_PUBLIC_URL
 }
 
+const authorizedDomain ={
+ allowedDomains : process.env.ALLOWED_DOMAINS?.split(",") || []
+}
+
 module.exports = {
     envPort,
     seederConfig,
     secretConfig,
     dbConfig,
-    r2Config
+    r2Config,
+    authorizedDomain
 }

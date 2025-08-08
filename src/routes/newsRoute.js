@@ -4,6 +4,7 @@ const {
   fetchSingleNews,
   addNews,
   fetchNews,
+  fetchNewsByAdmin,
 } = require("../controller/newsController");
 const {
   isAuthenticated,
@@ -23,6 +24,7 @@ router
     singleUpload,
     catchError(addNews)
   );
+   router.route('/news/admin').get(isAuthenticated,restrictedTo(Roles.admin),catchError(fetchNewsByAdmin));
 router
   .route("/news/:id")
   .get(catchError(fetchSingleNews))
@@ -33,5 +35,5 @@ router
     catchError(updateNews)
   )
   .delete(isAuthenticated, restrictedTo(Roles.admin), catchError(deleteNews));
-
+ 
 module.exports = router;

@@ -1,3 +1,4 @@
+const { authorizedDomain } = require("../config/config");
 const { news } = require("../database/connection");
 const uploadToR2 = require("../util/r2Upload");
 
@@ -47,17 +48,56 @@ const addNews = async (req, res) => {
 };
 
 const fetchNews = async (req, res) => {
-  const data = await news.findAll();
-  if(data.length ===0 ){
-    return res.status(200).json({
-      message:"No news to fetched"
-    })
+  const allowedDomains = authorizedDomain.allowedDomains;
+
+  //local
+// const origin = req.get('origin');
+// if (!origin) {
+//   return res.status(400).json({ message: "Missing origin header" });
+// }
+// const url = new URL(origin);
+// let domain = url.host.toLowerCase().replace(/^www\./, '').trim();
+
+  const domain = req.hostname.toLowerCase().replace(/^www\./, '').trim(); 
+
+  if (!allowedDomains.includes(domain)) {
+    return res.status(403).json({ message: 'Unauthorized domain' });
   }
-  return res.status(200).json({
-    message: "News fetched successfully",
+
+  const data = await news.findAll({
+    where: { schoolDomain: domain },
+    order: [['createdAt', 'DESC']],
+  });
+
+  if (data.length === 0) {
+    return res.status(404).json({ message: "News not found" });
+  }
+
+ return res.status(200).json({
+    message: 'News fetched successfully',
     data,
   });
 };
+
+
+
+const fetchNewsByAdmin = async (req, res) => {
+  const domain = req.user.schoolDomain;
+  const data = await news.findAll({
+    where: { schoolDomain: domain },
+    order: [['createdAt', 'DESC']],
+  });
+
+   if (data.length === 0) {
+    return res.status(404).json({ message: "News not found" });
+  }
+  
+  return res.status(200).json({
+    message:'News fetched successfully',
+    data
+  });
+};
+
 
 const fetchSingleNews = async (req, res) => {
   const { id } = req.params;
@@ -139,4 +179,5 @@ module.exports = {
   updateNews,
   deleteNews,
   fetchSingleNews,
+  fetchNewsByAdmin
 };

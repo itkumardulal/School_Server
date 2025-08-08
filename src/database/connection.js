@@ -34,11 +34,10 @@ db.sequelize = sequelize;
 
 db.admins = require("./models/authModel")(sequelize, DataTypes);
 db.news = require("./models/newsModel")(sequelize, DataTypes);
-db.users = require('./models/userModel') (sequelize,DataTypes)
-db.admissions = require('./models/admissionModel')(sequelize,DataTypes)
-db.messages = require('./models/messageModel') (sequelize,DataTypes)
-
-
+db.users = require("./models/userModel")(sequelize, DataTypes);
+db.admissions = require("./models/admissionModel")(sequelize, DataTypes);
+db.messages = require("./models/messageModel")(sequelize, DataTypes);
+db.notices = require("./models/noticeModel")(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("migrated successfully");

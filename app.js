@@ -6,8 +6,6 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 app.use(cookieParser());
 const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
   "https://schooladmin-production.up.railway.app",
   "https://schoolbhawagatiwebsite-production.up.railway.app",
   "https://www.hamrobhagawati.com",
@@ -36,11 +34,13 @@ const userRoutes = require("./src/routes/userRoute");
 const newsRoutes = require("./src/routes/newsRoute");
 const admissionRoutes = require("./src/routes/addmissionRoute");
 const messageRoutes = require("./src/routes/messageRoute");
+const noticeRoutes = require("./src/routes/noticeRoute");
 
 app.use("/", authRoutes);
 app.use("/", userRoutes);
 app.use("/", newsRoutes);
 app.use("/", admissionRoutes);
 app.use("/", messageRoutes);
+app.use("/", noticeRoutes);
 
 module.exports = app;

@@ -31,6 +31,23 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+const pdfFileFilter = (req, file, cb) => {
+  if (file.mimetype === "application/pdf") {
+    req.uploadType = "pdf";
+    cb(null, true);
+  } else {
+    cb(new Error("Only PDF files are allowed."), false);
+  }
+};
+
+const pdfUpload = multer({
+  storage,
+  fileFilter: pdfFileFilter,
+  limits: {
+    fileSize: 10 * 1024 * 1024, // 10MB
+  },
+}).single("file");
+
 const singleUpload = multer({
   storage,
   fileFilter,
@@ -41,4 +58,5 @@ const singleUpload = multer({
 
 module.exports = {
   singleUpload,
+  pdfUpload
 };
