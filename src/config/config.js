@@ -43,9 +43,13 @@ const r2Config = {
     publicUrl: process.env.R2_PUBLIC_URL
 }
 
-const authorizedDomain ={
- allowedDomains : process.env.ALLOWED_DOMAINS?.split(",") || []
-}
+const authorizedDomain = {
+  allowedDomains: process.env.ALLOWED_DOMAINS
+    ?.split(",")
+    .map(domain => domain.trim().toLowerCase())
+    .filter(Boolean) || []
+};
+
 
 module.exports = {
     envPort,

@@ -54,16 +54,12 @@ try {
 const fetchNotice = async (req, res) => {
   const allowedDomains = authorizedDomain.allowedDomains;
 
-  //local
-// const origin = req.get('origin');
-// if (!origin) {
-//   return res.status(400).json({ message: "Missing origin header" });
-// }
-// const url = new URL(origin);
-// let domain = url.host.toLowerCase().replace(/^www\./, '').trim();
+  const origin = req.get("origin");
+  if (!origin) {
+    return res.status(400).json({ message: "Missing origin header" });
+  }
 
-//production
-  const domain = req.hostname.toLowerCase().replace(/^www\./, '').trim(); 
+  const domain = new URL(origin).hostname.toLowerCase().replace(/^www\./, '').trim();
 
   if (!allowedDomains.includes(domain)) {
     return res.status(403).json({ message: 'Unauthorized domain' });
@@ -78,11 +74,12 @@ const fetchNotice = async (req, res) => {
     return res.status(404).json({ message: "Notices not found" });
   }
 
- return res.status(200).json({
+  return res.status(200).json({
     message: 'Notices fetched successfully',
     data,
   });
 };
+
 
 
 

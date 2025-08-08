@@ -49,19 +49,13 @@ const addNews = async (req, res) => {
 
 const fetchNews = async (req, res) => {
   const allowedDomains = authorizedDomain.allowedDomains;
+  const origin = req.get("origin");
 
-  //local
-// const origin = req.get('origin');
-// if (!origin) {
-//   return res.status(400).json({ message: "Missing origin header" });
-// }
-// const url = new URL(origin);
-// let domain = url.host.toLowerCase().replace(/^www\./, '').trim();
+  if (!origin) {
+    return res.status(400).json({ message: "Missing origin header" });
+  }
 
-  const domain = req.hostname.toLowerCase().replace(/^www\./, '').trim(); 
-console.log("DOMAIN:", domain);
-console.log("ALLOWED:", allowedDomains);
-
+  const domain = new URL(origin).hostname.toLowerCase().replace(/^www\./, '').trim();
 
   if (!allowedDomains.includes(domain)) {
     return res.status(403).json({ message: 'Unauthorized domain' });
@@ -76,11 +70,12 @@ console.log("ALLOWED:", allowedDomains);
     return res.status(404).json({ message: "News not found" });
   }
 
- return res.status(200).json({
+  return res.status(200).json({
     message: 'News fetched successfully',
     data,
   });
 };
+
 
 
 
