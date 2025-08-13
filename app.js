@@ -27,6 +27,11 @@ app.use(
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.status(200).send("Server is running 🚀");
+});
+
+
 adminSeeder();
 
 const authRoutes = require("./src/routes/authRoute");
