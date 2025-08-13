@@ -55,7 +55,8 @@ const fetchNews = async (req, res) => {
     return res.status(400).json({ message: "Missing origin header" });
   }
 
- const domain = new URL(origin).hostname.toLowerCase().trim();
+ const domain = new URL(origin).hostname.toLowerCase().replace(/^www\./, '').trim();
+
 
 
   if (!allowedDomains.includes(domain)) {
