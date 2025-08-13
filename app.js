@@ -27,7 +27,7 @@ app.use(
 
 app.use(express.json());
 
-// adminSeeder();
+adminSeeder();
 
 const authRoutes = require("./src/routes/authRoute");
 const userRoutes = require("./src/routes/userRoute");
