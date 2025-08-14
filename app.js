@@ -11,21 +11,23 @@ const allowedOrigins = [
   "https://www.hamrobhagawati.com",
 ];
 
-const corsOptions = {
-  origin: function (origin, callback) {
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    } else {
-      return callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
-app.options("*", cors(corsOptions));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+     
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      } else {
+        return callback(null,false);
+      }
+    },
+    credentials: true,
+  })
+);
 
 app.use(express.json());
+
+
 
 adminSeeder();
 
