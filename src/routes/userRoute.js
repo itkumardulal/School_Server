@@ -21,6 +21,6 @@ router
     catchError(fetchUser)
   );
 
-  router.route('/school/:id').get(isAuthenticated,restrictedTo(Roles.superAdmin),catchError(deleteUser))
+  router.route('/school/:id').delete(isAuthenticated,restrictedTo(Roles.superAdmin),catchError(deleteUser))
 
   module.exports=router
