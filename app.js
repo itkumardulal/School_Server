@@ -26,6 +26,7 @@ app.use(cors({
 }));
 
 
+
 adminSeeder();
 
 const authRoutes = require("./src/routes/authRoute");
