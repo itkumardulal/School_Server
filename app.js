@@ -8,26 +8,19 @@ app.use(cookieParser());
 const allowedOrigins = [
   "https://schooladmin-production.up.railway.app",
   "https://schoolbhawagatiwebsite-production.up.railway.app",
-  "https://www.hamrobhagawati.com",
+  "https://www.hamrobhagawati.com"
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-     
-      if (allowedOrigins.includes(origin)) {
-        return callback(null, true);
-      } else {
-        return callback(null,false);
-      }
-    },
-    credentials: true,
-  })
-);
-
-app.use(express.json());
-
-
+app.use(cors({
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true,
+}));
 
 adminSeeder();
 
