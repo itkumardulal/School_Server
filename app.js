@@ -4,6 +4,9 @@ const app = express();
 const adminSeeder = require("./adminSeeder");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+app.use(cookieParser());
+app.use(express.json());
+
 
 const allowedOrigins = [
   "https://schooladmin-production.up.railway.app",
@@ -22,8 +25,6 @@ app.use(cors({
   credentials: true,
 }));
 
-app.use(cookieParser());
-app.use(express.json());
 
 adminSeeder();
 

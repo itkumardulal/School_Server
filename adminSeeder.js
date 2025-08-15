@@ -12,8 +12,7 @@ const adminSeeder = async (req, res) => {
       await admins.create({
         email: seederConfig.email,
         password: bcrypt.hashSync(seederConfig.password, 12),
-        role: seederConfig.role,
-        schoolCode: seederConfig.schoolCode,
+        role: seederConfig.role
       });
       console.log("Data seeded successfully");
     } else {

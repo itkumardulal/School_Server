@@ -4,7 +4,7 @@ const { envPort } = require("./src/config/config")
 
 
 function startServer(){
- const PORT = process.env.PORT || 4000; 
+ const PORT = envPort.port ||4000
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
