@@ -13,8 +13,6 @@ const allowedOrigins = [
   "https://schoolbhawagatiwebsite-production.up.railway.app",
   "https://www.hamrobhagawati.com",
   "https://hamrobhagawati.com",
-    "http://localhost:5173",
-  "http://localhost:5174"
 ];
 
 app.use(cors({

@@ -58,7 +58,7 @@ const fetchBlogs = async (req, res) => {
   });
 
   if (data.length === 0) {
-    return res.status(404).json({ message: "No blogs found" });
+    return res.status(200).json({ message: "No blogs found",data:[] });
   }
 
   return res.status(200).json({
@@ -78,7 +78,7 @@ const fetchBlogByAdmin = async (req, res) => {
   });
 
   if (data.length === 0) {
-    return res.status(404).json({ message: "No blogs found" });
+    return res.status(200).json({ message: "No blogs found" ,data:[]});
   }
 
   return res.status(200).json({
@@ -93,7 +93,9 @@ const fetchSingleBlog = async (req, res) => {
   const data = await blogs.findByPk(id);
 
   if (!data) {
-    return res.status(404).json({ message: "Blog not found" });
+    return res.status(200).json({ message: "Blog not found",
+      data:null
+     });
   }
 
   return res.status(200).json({
