@@ -12,7 +12,9 @@ const allowedOrigins = [
   "https://schooladmin-production.up.railway.app",
   "https://schoolbhawagatiwebsite-production.up.railway.app",
   "https://www.hamrobhagawati.com",
-  "https://hamrobhagawati.com"
+  "https://hamrobhagawati.com",
+    "http://localhost:5173",
+  "http://localhost:5174"
 ];
 
 app.use(cors({
@@ -37,6 +39,7 @@ const newsRoutes = require("./src/routes/newsRoute");
 const admissionRoutes = require("./src/routes/addmissionRoute");
 const messageRoutes = require("./src/routes/messageRoute");
 const noticeRoutes = require("./src/routes/noticeRoute");
+const blogRoutes = require('./src/routes/blogRoute')
 
 app.use("/", authRoutes);
 app.use("/", userRoutes);
@@ -44,5 +47,6 @@ app.use("/", newsRoutes);
 app.use("/", admissionRoutes);
 app.use("/", messageRoutes);
 app.use("/", noticeRoutes);
+app.use('/' , blogRoutes)
 
 module.exports = app;

@@ -38,6 +38,7 @@ db.users = require("./models/userModel")(sequelize, DataTypes);
 db.admissions = require("./models/admissionModel")(sequelize, DataTypes);
 db.messages = require("./models/messageModel")(sequelize, DataTypes);
 db.notices = require("./models/noticeModel")(sequelize, DataTypes);
+db.blogs = require("./models/blogModel")(sequelize, DataTypes);
 
 db.sequelize.sync({ force: false }).then(() => {
   console.log("migrated successfully");
