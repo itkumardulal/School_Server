@@ -73,7 +73,7 @@ const domain = new URL(origin).hostname.toLowerCase().replace(/^www\./, '').trim
   });
 
   if (data.length === 0) {
-    return res.status(404).json({ message: "Notices not found" });
+    return res.status(200).json({ message: "Notices not found",data:[] });
   }
 
   return res.status(200).json({
@@ -81,8 +81,6 @@ const domain = new URL(origin).hostname.toLowerCase().replace(/^www\./, '').trim
     data,
   });
 };
-
-
 
 
 const fetchNoticesByAdmin = async (req, res) => {
@@ -93,7 +91,7 @@ const fetchNoticesByAdmin = async (req, res) => {
   });
 
    if (data.length === 0) {
-    return res.status(404).json({ message: "Notices not found" });
+    return res.status(200).json({ message: "Notices not found",data:[] });
   }
   
   return res.status(200).json({
@@ -106,7 +104,7 @@ const fetchSingleNotice = async (req, res) => {
   const { id } = req.params;
   const data = await notices.findByPk(id);
   if (!data) {
-    return res.status(404).json({ message: "Notice not found" });
+    return res.status(200).json({ message: "Notice not found",data:null });
   }
   return res.status(200).json({
     message: "Single notice fetched successfully",

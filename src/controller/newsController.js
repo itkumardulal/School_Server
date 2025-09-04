@@ -69,7 +69,7 @@ const fetchNews = async (req, res) => {
   });
 
   if (data.length === 0) {
-    return res.status(404).json({ message: "News not found" });
+    return res.status(200).json({ message: "News not found" ,data:[]});
   }
 
   return res.status(200).json({
@@ -89,7 +89,7 @@ const fetchNewsByAdmin = async (req, res) => {
   });
 
    if (data.length === 0) {
-    return res.status(404).json({ message: "News not found" });
+    return res.status(200).json({ message: "News not found",data:[] });
   }
   
   return res.status(200).json({
@@ -103,7 +103,7 @@ const fetchSingleNews = async (req, res) => {
   const { id } = req.params;
   const data = await news.findByPk(id);
   if (!data) {
-    return res.status(404).json({ message: "News not found" });
+    return res.status(200).json({ message: "News not found",data:null });
   }
   res.status(200).json({
     message: "Single news fetched successfully",
